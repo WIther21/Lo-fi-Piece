@@ -35,6 +35,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0ac068a-a8ac-45a0-86d8-a855450676cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -147,6 +156,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""mover"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e08efc9a-4c20-4be1-81d7-9daa700eaa69"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +176,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // player
         m_player = asset.FindActionMap("player", throwIfNotFound: true);
         m_player_mover = m_player.FindAction("mover", throwIfNotFound: true);
+        m_player_jump = m_player.FindAction("jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,11 +239,13 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_player_mover;
+    private readonly InputAction m_player_jump;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
         public PlayerActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @mover => m_Wrapper.m_player_mover;
+        public InputAction @jump => m_Wrapper.m_player_jump;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +258,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @mover.started += instance.OnMover;
             @mover.performed += instance.OnMover;
             @mover.canceled += instance.OnMover;
+            @jump.started += instance.OnJump;
+            @jump.performed += instance.OnJump;
+            @jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -242,6 +268,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @mover.started -= instance.OnMover;
             @mover.performed -= instance.OnMover;
             @mover.canceled -= instance.OnMover;
+            @jump.started -= instance.OnJump;
+            @jump.performed -= instance.OnJump;
+            @jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -262,5 +291,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMover(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
