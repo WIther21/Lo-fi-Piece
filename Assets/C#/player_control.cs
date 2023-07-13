@@ -1,32 +1,17 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class player_control : MonoBehaviour
 {
+  [SerializeField] private float _speed;
   private Rigidbody2D _rb;
-  private Vector2 _direction;
   private Animator _anim;
+  private Vector2 _direction;
   private bool _is_sitting;
-  private bool _in_moved;
-
-  [SerializeField] private float _multiplier;
-  [SerializeField] private float _min_speed;
-  private float _max_speed;
-  private float _speed;
-  private float _acceleration;
-
+  
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
     _anim = GetComponent<Animator>();
-  }
-
-  private void Start()
-  {
-    _acceleration = _min_speed;
-    _speed = _min_speed;
-    _max_speed = _speed * _multiplier;
   }
 
   private void Update()
@@ -42,12 +27,6 @@ public class player_control : MonoBehaviour
 
   private void FixedUpdate()
   {
-    if (_direction != Vector2.zero && !_in_moved && !_is_sitting)
-    {
-      _speed = _min_speed;
-      StartCoroutine(AccelMove());
-      _in_moved = true;
-    }
     MovePlayer();
   }
 
@@ -106,24 +85,6 @@ public class player_control : MonoBehaviour
   private void MovePlayer()
   {
     _rb.velocity = _direction * _speed;
-  }
-
-  private IEnumerator AccelMove()
-  {
-    while (_speed <= _max_speed)
-    {
-      yield return new WaitForSeconds(0.15f);
-      _speed += _acceleration;
-    }
-    if (_speed > _max_speed)
-    {
-      _speed = _max_speed;
-    }
-    if(_direction == Vector2.zero)
-    {
-      _speed = 0;
-      _in_moved = false;
-    }
   }
 
   public void Sit()
