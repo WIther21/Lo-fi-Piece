@@ -6,7 +6,6 @@ public class player_jump : MonoBehaviour
 {
   [SerializeField] private float _jump_speed;
   [SerializeField] private Vector2 _jump_distance;
-  [SerializeField] private float _jump_force;
   [SerializeField] private AnimationCurve _jump_fx;
   private Animator _anim;
   private Vector2 _start_pos;
