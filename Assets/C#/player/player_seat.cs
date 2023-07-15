@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class seat : MonoBehaviour
+public class player_seat : MonoBehaviour
 {
-  [SerializeField] private float _sit_speed = 3f;
+  //[SerializeField] private float _sit_speed = 3f;
   [SerializeField] private bool _sit_direction;
   private Animator _anim;
   private player_control _player;

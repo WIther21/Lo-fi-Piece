@@ -7,11 +7,20 @@ public class player_control : MonoBehaviour
   private Animator _anim;
   private Vector2 _direction;
   private bool _is_sitting;
+  private player_jump _script_jump;
   
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
     _anim = GetComponent<Animator>();
+    if(GetComponent<player_jump>())
+      _script_jump = GetComponent<player_jump>();
+  }
+
+  public Vector2 GetDirection(Vector2 direction)
+  {
+    direction = _direction;
+    return direction;
   }
 
   private void Update()
@@ -23,6 +32,8 @@ public class player_control : MonoBehaviour
     SetAnimations();
     if (ChangeDirection())
       Flip();
+    if (_script_jump)
+      _script_jump.JumpUpdate();
   }
 
   private void FixedUpdate()
@@ -63,6 +74,8 @@ public class player_control : MonoBehaviour
     _anim.SetInteger("DirectionX", Mathf.RoundToInt(_direction.x));
     _anim.SetInteger("DirectionY", Mathf.RoundToInt(_direction.y));
     _anim.SetBool("isSitting", _is_sitting);
+    if(_script_jump)
+      _script_jump.SetAnimation();
   }
 
   private void ResetAnimations()
@@ -70,6 +83,7 @@ public class player_control : MonoBehaviour
     _anim.SetInteger("DirectionX", 0);
     _anim.SetInteger("DirectionY", 0);
     _anim.SetBool("isSitting", false);
+    _anim.SetBool("inJumping", false);
   }
 
   private void Flip()
