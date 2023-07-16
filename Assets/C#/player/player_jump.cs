@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(player_control))]
 public class player_jump : MonoBehaviour
 {
-  [SerializeField] private float _jump_speed;
+  [SerializeField] private float _animation_speed;
   [SerializeField] private Vector2 _jump_distance;
   [SerializeField] private AnimationCurve _jump_fx;
   private Animator _anim;
@@ -28,6 +28,12 @@ public class player_jump : MonoBehaviour
     }
   }
 
+  public bool GetJump(bool jump_state)
+  {
+    jump_state = _in_jumping;
+    return jump_state;
+  }
+
   public void SetAnimation()
   {
     _anim.SetBool("inJumping", _in_jumping);
@@ -39,7 +45,8 @@ public class player_jump : MonoBehaviour
     _player.GetComponent<Collider2D>().enabled = false;
     Vector2 jump_pos = _start_pos;
     float current_time = 0;
-    float total_time = _jump_fx.keys[_jump_fx.keys.Length - 1].time * 1.45f;
+    float total_time = _jump_fx.keys[_jump_fx.keys.Length - 1].time * 1.2f;
+    Debug.Log(total_time);
     _in_jumping = true;
     if (direction != Vector2.zero)
       jump_pos = _start_pos + _jump_distance * direction;
@@ -51,7 +58,7 @@ public class player_jump : MonoBehaviour
       float offset_y = _jump_fx.Evaluate(current_time);
       float pos_y = transform.position.y + offset_y;
       _player.transform.position = new Vector2(_player.transform.position.x, pos_y);
-      _player.transform.position = Vector2.MoveTowards(_player.transform.position, jump_pos, _jump_speed * Time.deltaTime);
+      _player.transform.position = Vector2.MoveTowards(_player.transform.position, jump_pos, _animation_speed * Time.deltaTime);
       yield return null;
       if (current_time >= total_time)
       {

@@ -96,6 +96,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: DirectionY
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8715281449494024219}
   m_Solo: 0
@@ -201,6 +204,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: DirectionY
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 886064619862242437}
   m_Solo: 0
@@ -226,6 +232,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 7
     m_ConditionEvent: DirectionX
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 365083144960593429}
   m_Solo: 0
@@ -250,6 +259,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: DirectionY
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8715281449494024219}
@@ -301,7 +313,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 4
     m_ConditionEvent: DirectionY
     m_EventTreshold: 0
   - m_ConditionMode: 2
@@ -650,31 +662,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: DirectionY
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isSitting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SitDirection
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: inJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1105,6 +1117,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: DirectionY
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 886064619862242437}
   m_Solo: 0
@@ -1207,6 +1222,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 7
     m_ConditionEvent: DirectionX
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: inJumping
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 365083144960593429}

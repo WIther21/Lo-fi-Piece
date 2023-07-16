@@ -38,14 +38,19 @@ public class player_control : MonoBehaviour
 
   private void FixedUpdate()
   {
-    MovePlayer();
+    bool jump_state = false;
+    if (_script_jump)
+      _script_jump.GetJump(jump_state);
+    if (!jump_state)
+    {
+      MovePlayer();
+    }
   }
 
   private void SetDirection()
   {
     float inputH = Input.GetAxisRaw("Horizontal");
     float inputV = Input.GetAxisRaw("Vertical");
-
     if (inputH != 0)
     {
       if (inputV == 0)

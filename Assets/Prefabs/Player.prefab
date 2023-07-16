@@ -161,7 +161,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0cb01fd47102d4398cc6344a44e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jump_speed: 0
+  _animation_speed: 1.6
+  _jump_distance: {x: 1.2, y: 1.2}
+  _jump_fx:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.005059254
+      outSlope: 0.005059254
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.26685596
+    - serializedVersion: 3
+      time: 0.030874278
+      value: 0.002825399
+      inSlope: 0.14913857
+      outSlope: 0.14913857
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2794388
+      outWeight: 0.14464101
+    - serializedVersion: 3
+      time: 0.15
+      value: 0.011
+      inSlope: -0.0022658517
+      outSlope: -0.0022658517
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.37728646
+      outWeight: 0.25690073
+    - serializedVersion: 3
+      time: 0.4
+      value: -0.003
+      inSlope: -0.06899033
+      outSlope: -0.06899033
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18486303
+      outWeight: 0.17681062
+    - serializedVersion: 3
+      time: 0.6
+      value: 0
+      inSlope: 0.06418476
+      outSlope: 0.06418476
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22123435
+      outWeight: 0.46094653
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &515748017608416038
 Animator:
   serializedVersion: 5
