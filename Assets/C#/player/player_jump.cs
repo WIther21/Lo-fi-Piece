@@ -45,7 +45,7 @@ public class player_jump : MonoBehaviour
     _player.GetComponent<Collider2D>().enabled = false;
     Vector2 jump_pos = _start_pos;
     float current_time = 0;
-    float total_time = _jump_fx.keys[_jump_fx.keys.Length - 1].time * 1.2f;
+    float total_time = _jump_fx.keys[_jump_fx.keys.Length - 1].time * 1.45f;
     Debug.Log(total_time);
     _in_jumping = true;
     if (direction != Vector2.zero)
