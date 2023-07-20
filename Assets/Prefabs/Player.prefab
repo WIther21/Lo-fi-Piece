@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6199855169239797272}
   - component: {fileID: 6199855169239797273}
+  - component: {fileID: 515748017608416038}
   - component: {fileID: 6199855169239797277}
   - component: {fileID: 6199855169239797278}
   - component: {fileID: 6199855169239797279}
-  - component: {fileID: 141614754648785974}
-  - component: {fileID: 515748017608416038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -89,6 +88,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &515748017608416038
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199855169239797274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fedcc65d279be0e45bf34b9bdf477a82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &6199855169239797277
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,88 +169,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
---- !u!114 &141614754648785974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199855169239797274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0cb01fd47102d4398cc6344a44e1de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jump_distance: {x: 1.2, y: 1.2}
-  _jump_fx:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.005059254
-      outSlope: 0.005059254
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.26685596
-    - serializedVersion: 3
-      time: 0.030874278
-      value: 0.002825399
-      inSlope: 0.14913857
-      outSlope: 0.14913857
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.2794388
-      outWeight: 0.14464101
-    - serializedVersion: 3
-      time: 0.15
-      value: 0.011
-      inSlope: -0.0022658517
-      outSlope: -0.0022658517
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.37728646
-      outWeight: 0.25690073
-    - serializedVersion: 3
-      time: 0.4
-      value: -0.003
-      inSlope: -0.06899033
-      outSlope: -0.06899033
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.18486303
-      outWeight: 0.17681062
-    - serializedVersion: 3
-      time: 0.6
-      value: 0
-      inSlope: 0.06418476
-      outSlope: 0.06418476
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.22123435
-      outWeight: 0.46094653
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!95 &515748017608416038
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6199855169239797274}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fedcc65d279be0e45bf34b9bdf477a82, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
