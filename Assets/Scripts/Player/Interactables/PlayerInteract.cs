@@ -3,18 +3,31 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private float _interactionRadius;
-    public void Interact()
+    private InteractableObject _currentObject;
+    public virtual void Interact()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _interactionRadius);
-        for (int i = 0; i < colliders.Length; i++)
+        if (_currentObject)
         {
-            InteractableObject interaction = colliders[i].GetComponent<InteractableObject>();
-            if(interaction != null)
+            _currentObject.Interact(gameObject);
+            _currentObject = null;
+        }
+        else
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _interactionRadius);
+            for (int i = 0; i < colliders.Length; i++)
             {
-                interaction.Interact(gameObject);
-                break;
+                InteractableObject interaction = colliders[i].GetComponent<InteractableObject>();
+                if (interaction != null)
+                {
+                    interaction.Interact(gameObject);
+                    break;
+                }
             }
         }
+    }
+    public void SetCrurrentInteractableObject(InteractableObject interact)
+    {
+        _currentObject = interact;
     }
     private void OnDrawGizmos()
     {

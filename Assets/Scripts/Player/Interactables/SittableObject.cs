@@ -8,7 +8,7 @@ public class SittableObject : InteractableObject
     {
         if (_isSitting == false)
             SitDown(player.transform);
-        else
+        else 
             StandUp(player.transform);
     }
     private void SitDown(Transform player)
@@ -18,6 +18,7 @@ public class SittableObject : InteractableObject
         player.GetComponent<Collider2D>().enabled = false;
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        player.GetComponent<PlayerInteract>().SetCrurrentInteractableObject(this);
 
         PlayerAnimation animation = player.GetComponent<PlayerAnimation>();
         animation.SetSitting(true);

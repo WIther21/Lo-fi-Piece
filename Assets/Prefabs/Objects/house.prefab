@@ -71,7 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33df085e55659b344ab06009f55cb5bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneName: House
+  _sceneName: 
+  _fadeAnimation: {fileID: 0}
 --- !u!1 &6281145391677657921
 GameObject:
   m_ObjectHideFlags: 0
