@@ -79,4 +79,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         _isSitting = value;
     }
+    private void OnDisable()
+    {
+        _animator.SetBool("IsMoving", false);
+        _animator.SetBool("IsSitting", false);
+    }
 }
