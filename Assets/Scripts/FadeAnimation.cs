@@ -4,83 +4,89 @@ using TMPro;
 using System.Collections;
 public class FadeAnimation : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private float _startValueToChange;
-    [SerializeField] private float _startValue;
-    [SerializeField] private float _delay;
+    [SerializeField] private float _fadeSpeed = 1f;
+    [SerializeField] private float _fadeDelay = 0.15f;
+    [SerializeField] private bool _fadeOutOnAwake;
+    [SerializeField] private bool _disablePlayer;
     private Image[] _images;
     private TextMeshProUGUI[] _text;
-    private float _valueToChange;
-    private float _value;
-    private bool _isCompleted;
+    private PlayerInputReader _playerInputReader;
+    private bool _canFade = true;
     private void Awake()
     {
         _images = GetComponentsInChildren<Image>();
         _text = GetComponentsInChildren<TextMeshProUGUI>();
+        _playerInputReader = FindObjectOfType<PlayerInputReader>();
     }
     private void Start()
     {
-        _value = _startValue;
-        _valueToChange = _startValue;
-        SetValues();
-        ChangeValue(_startValueToChange);
+        if (_fadeOutOnAwake == false)
+            return;
+        if (_disablePlayer)
+            _playerInputReader.SetActive(false);
+        SetAlpha(1);
+        StartCoroutine(FadeOutCoroutine());
     }
     private void OnValidate()
     {
-        if (_speed < 0)
-            _speed = 0;
-        if (_startValueToChange < 0 || _startValueToChange > 1)
-            _startValueToChange = 0;
+        if (_fadeSpeed < 0)
+            _fadeSpeed = 0;
     }
-    private void Update()
+    public void FadeIn()
     {
-        if (_value == _valueToChange)
+        if (_canFade == false)
+            return;
+        StartCoroutine(FadeInCoroutine());
+    }
+    public void FadeOut()
+    {
+        if (_canFade == false)
+            return;
+        StartCoroutine(FadeOutCoroutine());
+    }
+    public bool GetCompleted()
+    {
+        return _canFade;
+    }
+    private IEnumerator FadeInCoroutine()
+    {
+        _canFade = false;
+        if (_disablePlayer)
+            _playerInputReader.SetActive(false);
+        yield return new WaitForSeconds(_fadeDelay);
+        float alpha = 0f;
+        while (alpha != 1f)
         {
-            _isCompleted = true;
+            alpha = Mathf.MoveTowards(alpha, 1f, Time.deltaTime * _fadeSpeed);
+            SetAlpha(alpha);
+            yield return null;
         }
-        else
+        _canFade = true;
+    }
+    private IEnumerator FadeOutCoroutine()
+    {
+        _canFade = false;
+        yield return new WaitForSeconds(_fadeDelay);
+        float alpha = 1f;
+        while (alpha != 0f)
         {
-            _isCompleted = false;
-            UpdateValue();
-            SetValues();
+            alpha = Mathf.MoveTowards(alpha, 0f, Time.deltaTime * _fadeSpeed);
+            SetAlpha(alpha);
+            yield return null;
         }
+        if (_disablePlayer)
+            _playerInputReader.SetActive(true);
+        _canFade = true;
     }
-    private void SetValues()
+    private void SetAlpha(float alpha)
     {
-        if (_images.Length != 0)
+        for (int i = 0; i < _images.Length; i++)
         {
-            for (int i = 0; i < _images.Length; i++)
-            {
-                _images[i].color = new Color(_images[i].color.r, _images[i].color.g, _images[i].color.b, _value);
-            }
+            _images[i].color = new Color(_images[i].color.r, _images[i].color.g, _images[i].color.b, alpha);
         }
-        if (_text.Length != 0)
+        for (int i = 0; i < _text.Length; i++)
         {
-            for (int i = 0; i < _text.Length; i++)
-            {
-                _text[i].color = new Color(_text[i].color.r, _text[i].color.g, _text[i].color.b, _value);
-            }
+            _text[i].color = new Color(_text[i].color.r, _text[i].color.g, _text[i].color.b, alpha);
         }
-    }
-    private void UpdateValue()
-    {
-        _value = Mathf.MoveTowards(_value, _valueToChange, _speed * Time.deltaTime);
-    }
-    public void ChangeValue(float fadeValue)
-    {
-        StartCoroutine(Delay(fadeValue));
-    }
-    private IEnumerator Delay(float fadeValue)
-    {
-        yield return new WaitForSeconds(_delay);
-        _valueToChange = Mathf.Clamp(fadeValue, 0f, 1f);
-    }
-    public bool IsCompleted()
-    {
-        return _isCompleted;
-    }
-    public float GetDelay()
-    {
-        return _delay;
     }
 }

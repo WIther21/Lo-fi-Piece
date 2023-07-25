@@ -2,6 +2,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputReader))]
 public class PlayerInteract : MonoBehaviour
 {
+    [SerializeField] private Vector3 _interactionOffset;
     [SerializeField] private float _interactionRadius;
     private InteractableObject _currentObject;
     public virtual void Interact()
@@ -22,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
     }
     private void InteractAny()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _interactionRadius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + _interactionOffset, _interactionRadius);
         for (int i = 0; i < colliders.Length; i++)
         {
             InteractableObject interaction = colliders[i].GetComponent<InteractableObject>();
@@ -35,6 +36,6 @@ public class PlayerInteract : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, _interactionRadius);
+        Gizmos.DrawWireSphere(transform.position + _interactionOffset, _interactionRadius);
     }
 }

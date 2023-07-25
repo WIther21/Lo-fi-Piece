@@ -1,66 +1,49 @@
 using UnityEngine;
-[RequireComponent(typeof(PlayerInputReader))]
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
 {
+    public enum Orientation { left, right, lower, upper }
     private Animator _animator;
-    private Vector2 _direction;
-    private bool _isSitting;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
-    private void Update()
+    public void SetMoving(bool value)
     {
-        SetParameters();
-        if (_isSitting == false)
+        _animator.SetBool("IsMoving", value);
+    }
+    public void SetSitting(bool value)
+    {
+        _animator.SetBool("IsSitting", value);
+    }
+    public void SetOrientation(Orientation orientation)
+    {
+        if (orientation == Orientation.left)
         {
-            ChangeLayer();
-            if (ChangeDirection())
+            SetLayer(0);
+            if (transform.localScale.x > 0)
                 Flip();
         }
-    }
-    private void SetParameters()
-    {
-        if (_isSitting == false)
+        else if (orientation == Orientation.right)
         {
-            if (_direction.x != 0 || _direction.y != 0)
-                _animator.SetBool("IsMoving", true);
-            else
-                _animator.SetBool("IsMoving", false);
-
-            _animator.SetBool("IsSitting", false);
+            SetLayer(0);
+            if (transform.localScale.x < 0)
+                Flip();
         }
-        else
-            _animator.SetBool("IsSitting", true);
-    }
-    private void ChangeLayer()
-    {
-        if (_direction.y == 0)
+        else if (orientation == Orientation.lower)
         {
-            if (_direction.x != 0)
-                SetLayer(0);
+            SetLayer(1);
         }
         else
         {
-            if (_direction.y < 0)
-                SetLayer(1);
-            else if (_direction.y > 0)
-                SetLayer(2);
+            SetLayer(2);
         }
     }
-    private bool ChangeDirection()
-    {
-        if (_direction.x > 0 && transform.localScale.x < 0 && _direction.y == 0 ||
-            _direction.x < 0 && transform.localScale.x > 0 && _direction.y == 0)
-            return true;
-        else
-            return false;
-    }
-    public void Flip()
+    private void Flip()
     {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
     }
-    public void SetLayer(int index)
+    private void SetLayer(int index)
     {
         index = Mathf.Clamp(index + 1, 0, _animator.layerCount - 1);
         for (int i = 0; i < _animator.layerCount; i++)
@@ -70,18 +53,5 @@ public class PlayerAnimation : MonoBehaviour
             else
                 _animator.SetLayerWeight(i, 0);
         }
-    }
-    public void SetDirection(Vector2 direction)
-    {
-        _direction = direction;
-    }
-    public void SetSitting(bool value)
-    {
-        _isSitting = value;
-    }
-    private void OnDisable()
-    {
-        _animator.SetBool("IsMoving", false);
-        _animator.SetBool("IsSitting", false);
     }
 }

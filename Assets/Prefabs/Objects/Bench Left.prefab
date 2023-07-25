@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _orientation: 1
+  _sitSpeed: 5
 --- !u!1 &7598330680430194551
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _orientation: 1
+  _sitSpeed: 5
 --- !u!1 &7598330681141251036
 GameObject:
   m_ObjectHideFlags: 0

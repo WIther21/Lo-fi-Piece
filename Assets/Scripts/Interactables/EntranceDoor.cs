@@ -7,16 +7,17 @@ public class EntranceDoor : InteractableObject
     [SerializeField] private FadeAnimation _fadeAnimation;
     public override void Interact(PlayerInteract player)
     {
+        if (_fadeAnimation == null)
+            return;
         StartCoroutine(WaitForFade());
     }
     private IEnumerator WaitForFade()
     {
-        _fadeAnimation.ChangeValue(1f);
-        yield return new WaitForSeconds(_fadeAnimation.GetDelay());
+        _fadeAnimation.FadeIn();
         do
         {
             yield return null;
-        } while (_fadeAnimation.IsCompleted() == false);
+        } while (_fadeAnimation.GetCompleted() == false);
         SceneManager.LoadScene(_sceneName);
     }
 }

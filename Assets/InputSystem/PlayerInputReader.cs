@@ -1,21 +1,24 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInputReader : MonoBehaviour
 {
+    private PlayerInput _playerInput;
     private PlayerMovement _playerMovement;
-    private PlayerAnimation _playerAnimation;
     private PlayerInteract _playerInteract;
     private void Awake()
     {
+        _playerInput = GetComponent<PlayerInput>();
         _playerMovement = GetComponent<PlayerMovement>();
-        _playerAnimation = GetComponent<PlayerAnimation>();
         _playerInteract = GetComponent<PlayerInteract>();
+    }
+    public void SetActive(bool value)
+    {
+        _playerInput.enabled = value;
     }
     private void OnMovement(InputValue value)
     {
-        Vector2 direction = value.Get<Vector2>();
-        _playerMovement.SetDirection(direction);
-        _playerAnimation.SetDirection(direction);
+        _playerMovement.SetDirection(value.Get<Vector2>());
     }
     private void OnInteract()
     {

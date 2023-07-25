@@ -1,70 +1,72 @@
 using UnityEngine;
+using System.Collections;
 public class SittableObject : InteractableObject
 {
-    private enum Orientation { left, right, lower, upper }
-    [SerializeField] private Orientation _orientation;
+    [SerializeField] private PlayerAnimation.Orientation _orientation;
+    [SerializeField] private float _sitSpeed = 1f;
     private bool _isSitting;
+    private bool _canSit = true;
+    private void OnValidate()
+    {
+        if (_sitSpeed < 0)
+            _sitSpeed = 0;
+    }
     public override void Interact(PlayerInteract player)
     {
+        if (_canSit == false)
+            return;
         if (_isSitting == false)
-            SitDown(player);
+            StartCoroutine(SitDown(player));
         else 
-            StandUp(player);
+            StartCoroutine(StandUp(player));
     }
-    private void SitDown(PlayerInteract player)
+    private IEnumerator SitDown(PlayerInteract player)
     {
+        _canSit = false;
         _isSitting = true;
         player.SetCrurrentInteractableObject(this);
-        player.transform.position = transform.position;
         player.GetComponent<Collider2D>().enabled = false;
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<SpriteRenderer>().sortingOrder = 1;
-
         PlayerAnimation animation = player.GetComponent<PlayerAnimation>();
         animation.SetSitting(true);
-        CheckLayer(animation);
+        animation.SetOrientation(_orientation);
+
+        while (player.transform.position != transform.position)
+        {
+            player.transform.position = Vector2.MoveTowards(player.transform.position, transform.position, Time.deltaTime * _sitSpeed);
+            yield return null;
+        }
+
+        _canSit = true;
     }
-    private void StandUp(PlayerInteract player)
+    private IEnumerator StandUp(PlayerInteract player)
     {
-        _isSitting = false;
-        player.transform.position = transform.position + StandUpDirection() * 0.2f;
+        _canSit = false;
+
+        Vector3 standUpPosition = transform.position + StandUpDirection() * 0.2f;
+        while (player.transform.position != standUpPosition)
+        {
+            player.transform.position = Vector2.MoveTowards(player.transform.position, standUpPosition, Time.deltaTime * _sitSpeed);
+            yield return null;
+        }
+
         player.GetComponent<Collider2D>().enabled = true;
         player.GetComponent<PlayerMovement>().enabled = true;
         player.GetComponent<SpriteRenderer>().sortingOrder = 0;
         player.GetComponent<PlayerAnimation>().SetSitting(false);
+        _isSitting = false;
+        _canSit = true;
     }
     private Vector3 StandUpDirection()
     {
-        if (_orientation == Orientation.left)
+        if (_orientation == PlayerAnimation.Orientation.left)
             return Vector3.left;
-        else if (_orientation == Orientation.right)
+        else if (_orientation == PlayerAnimation.Orientation.right)
             return Vector3.right;
-        else if (_orientation == Orientation.lower)
+        else if (_orientation == PlayerAnimation.Orientation.lower)
             return Vector3.down;
         else
             return Vector3.up;
-    }
-    private void CheckLayer(PlayerAnimation animation)
-    {
-        if (_orientation == Orientation.left)
-        {
-            animation.SetLayer(0);
-            if (animation.transform.localScale.x > 0)
-                animation.Flip();
-        }
-        else if (_orientation == Orientation.right)
-        {
-            animation.SetLayer(0);
-            if (animation.transform.localScale.x < 0)
-                animation.Flip();
-        }
-        else if (_orientation == Orientation.lower)
-        {
-            animation.SetLayer(1);
-        }
-        else
-        {
-            animation.SetLayer(2);
-        }
     }
 }

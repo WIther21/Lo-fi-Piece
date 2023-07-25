@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _dialogueName;
@@ -8,7 +7,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private FadeAnimation _fadeAnimation;
     public void OpenDialogueBox(PlayerInteract player, DialogueObject dialogue)
     {
-        _fadeAnimation.ChangeValue(1f);
+        _fadeAnimation.FadeIn();
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<PlayerAnimation>().enabled = false;
 
@@ -20,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void CloseDialogueBox(PlayerInteract player)
     {
-        _fadeAnimation.ChangeValue(0f);
+        _fadeAnimation.FadeOut();
         player.GetComponent<PlayerMovement>().enabled = true;
         player.GetComponent<PlayerAnimation>().enabled = true;
     }
