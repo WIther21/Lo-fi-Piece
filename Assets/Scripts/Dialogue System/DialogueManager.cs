@@ -1,26 +1,43 @@
 using UnityEngine;
-using TMPro;
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _dialogueName;
-    [SerializeField] private TextMeshProUGUI _dialogueText;
-    [SerializeField] private FadeAnimation _fadeAnimation;
-    public void OpenDialogueBox(PlayerInteract player, DialogueObject dialogue)
+    private PlayerMovement _playerMovement;
+    private DialogueTrigger _dialogueTrigger;
+    private DialogueBox _dialogueBox;
+    private QuestionBox _questionBox;
+    public bool CanExit;
+    private void Awake()
     {
-        _fadeAnimation.FadeIn();
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<PlayerAnimation>().enabled = false;
-
-        _dialogueName.text = dialogue.GetDialogue(0).GetDialogueName();
-        _dialogueText.text = dialogue.GetDialogue(0).GetDialogueText();
-        Color dialogueColor = dialogue.GetDialogue(0).GetDialogueColor();
-        _dialogueName.color = dialogueColor;
-        _dialogueText.color = dialogueColor;
+        _playerMovement = FindObjectOfType<PlayerMovement>();
+        _dialogueBox = GetComponentInChildren<DialogueBox>();
+        _questionBox = GetComponentInChildren<QuestionBox>();
     }
-    public void CloseDialogueBox(PlayerInteract player)
+    public void StartDialogue(DialogueTrigger trigger)
     {
-        _fadeAnimation.FadeOut();
-        player.GetComponent<PlayerMovement>().enabled = true;
-        player.GetComponent<PlayerAnimation>().enabled = true;
+        _playerMovement.enabled = false;
+        _dialogueTrigger = trigger;
+        LoadDialogues(_dialogueTrigger.GetDialogues());
     }
+    public void StopDialogue()
+    {
+        _playerMovement.enabled = true;
+        _dialogueTrigger = null;
+        _dialogueBox.CloseDialogueBox();
+        _questionBox.CloseQuestionBox();
+        CanExit = false;
+    }
+    public void LoadQuestions()
+    {
+        _dialogueBox.CloseDialogueBox();
+        _questionBox.OpenQuestionBox(_dialogueTrigger.GetQuestions());
+    }    
+    public void LoadDialogues(Dialogue[] dialogues)
+    {
+        _questionBox.CloseQuestionBox();
+        _dialogueBox.OpenDialogueBox(dialogues);
+    }
+    public void UpdateDialogue() { _dialogueBox.UpdateDialogue(); }
+    public bool IsDialogueTrigger() { return _dialogueTrigger; }
+    public bool IsQuestionsLoaded() { return _questionBox.IsLoaded(); }
+    public bool CanUpdateDialogue() { return _dialogueBox.CanUpdateDialogue(); }
 }

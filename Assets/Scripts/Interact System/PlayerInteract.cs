@@ -16,10 +16,13 @@ public class PlayerInteract : MonoBehaviour
     {
         _currentObject = interact;
     }
+    public void RemoveCrurrentInteractableObject()
+    {
+        _currentObject = null;
+    }
     private void InteractCurrent()
     {
         _currentObject.Interact(this);
-        _currentObject = null;
     }
     private void InteractAny()
     {

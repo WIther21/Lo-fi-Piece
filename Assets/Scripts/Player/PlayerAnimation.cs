@@ -2,7 +2,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimation : MonoBehaviour
 {
-    public enum Orientation { left, right, lower, upper }
     private Animator _animator;
     private void Awake()
     {
@@ -55,3 +54,4 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 }
+public enum Orientation { left, right, lower, upper }

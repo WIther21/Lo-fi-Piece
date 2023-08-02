@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 public class SittableObject : InteractableObject
 {
-    [SerializeField] private PlayerAnimation.Orientation _orientation;
+    [SerializeField] private Orientation _orientation;
     [SerializeField] private float _sitSpeed = 1f;
-    private bool _isSitting;
+    private bool _isInteracting;
     private bool _canSit = true;
     private void OnValidate()
     {
@@ -15,7 +15,7 @@ public class SittableObject : InteractableObject
     {
         if (_canSit == false)
             return;
-        if (_isSitting == false)
+        if (_isInteracting == false)
             StartCoroutine(SitDown(player));
         else 
             StartCoroutine(StandUp(player));
@@ -23,7 +23,7 @@ public class SittableObject : InteractableObject
     private IEnumerator SitDown(PlayerInteract player)
     {
         _canSit = false;
-        _isSitting = true;
+        _isInteracting = true;
         player.SetCrurrentInteractableObject(this);
         player.GetComponent<Collider2D>().enabled = false;
         player.GetComponent<PlayerMovement>().enabled = false;
@@ -55,16 +55,17 @@ public class SittableObject : InteractableObject
         player.GetComponent<PlayerMovement>().enabled = true;
         player.GetComponent<SpriteRenderer>().sortingOrder = 0;
         player.GetComponent<PlayerAnimation>().SetSitting(false);
-        _isSitting = false;
+        player.RemoveCrurrentInteractableObject();
+        _isInteracting = false;
         _canSit = true;
     }
     private Vector3 StandUpDirection()
     {
-        if (_orientation == PlayerAnimation.Orientation.left)
+        if (_orientation == Orientation.left)
             return Vector3.left;
-        else if (_orientation == PlayerAnimation.Orientation.right)
+        else if (_orientation == Orientation.right)
             return Vector3.right;
-        else if (_orientation == PlayerAnimation.Orientation.lower)
+        else if (_orientation == Orientation.lower)
             return Vector3.down;
         else
             return Vector3.up;

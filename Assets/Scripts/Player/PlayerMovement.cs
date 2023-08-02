@@ -1,5 +1,4 @@
 using UnityEngine;
-[RequireComponent(typeof(PlayerInputReader))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
@@ -39,16 +38,16 @@ public class PlayerMovement : MonoBehaviour
         if (_direction.x == 0)
         {
             if (_direction.y > 0)
-                _playerAnimation.SetOrientation(PlayerAnimation.Orientation.upper);
+                _playerAnimation.SetOrientation(Orientation.upper);
             else if (_direction.y < 0)
-                _playerAnimation.SetOrientation(PlayerAnimation.Orientation.lower);
+                _playerAnimation.SetOrientation(Orientation.lower);
         }
         else
         {
             if (_direction.x > 0)
-                _playerAnimation.SetOrientation(PlayerAnimation.Orientation.right);
+                _playerAnimation.SetOrientation(Orientation.right);
             else if (_direction.x < 0)
-                _playerAnimation.SetOrientation(PlayerAnimation.Orientation.left);
+                _playerAnimation.SetOrientation(Orientation.left);
         }
     }
     private void OnDisable()
