@@ -28,8 +28,6 @@ namespace Game.Dialogue
                 }
                 else if (_questions.Length != 0)
                 {
-                    if (_questions[0].GetDialogues().Length == 0)
-                        return;
                     OpenDialogie(player);
                     _questionBox.OpenBox(_questions);
                 }

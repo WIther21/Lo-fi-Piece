@@ -1671,7 +1671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -4.75, z: -10}
+  m_LocalPosition: {x: 5, y: -3.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2215,6 +2215,7 @@ MonoBehaviour:
   - _name: "\u0412\u0430\u043B\u0435\u043D\u0442\u0438\u043D\u0430"
     _text: "\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C!"
     _color: {r: 1, g: 0, b: 0.8352337, a: 1}
+    _speed: 0
   _questions: []
 --- !u!1001 &625137074
 PrefabInstance:
@@ -10499,6 +10500,7 @@ MonoBehaviour:
   - _name: "\u041C\u0430\u0439\u043A"
     _text: "\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E!"
     _color: {r: 1, g: 1, b: 1, a: 1}
+    _speed: 0
   _questions: []
 --- !u!1001 &1009374106
 PrefabInstance:
@@ -13495,7 +13497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572354624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -4.75, z: -10}
+  m_LocalPosition: {x: 5, y: -3.75, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -31192,18 +31194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1549663835}
     m_Modifications:
-    - target: {fileID: 4875895243973552961, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -112
-      objectReference: {fileID: 0}
-    - target: {fileID: 4875895243973552961, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4875895245023159732, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4875895245332649902, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -31292,8 +31282,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4875895245332649901, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d545838248df9d4bb91b50a223b7d20, type: 3}
 --- !u!1001 &1661329064
 PrefabInstance:
@@ -32480,28 +32469,9 @@ MonoBehaviour:
   _dialogues:
   - _name: "\u041B\u0451\u0445\u0430"
     _text: "\u0427\u0435\u0433\u043E \u0442\u0430\u043A\u043E\u0439 \u043A\u0438\u0441\u043B\u044B\u0439?"
-    _color: {r: 1, g: 0.3895352, b: 0, a: 1}
-  _questions:
-  - _text: 1
-    _color: {r: 0, g: 0, b: 0, a: 1}
-    _dialogues:
-    - _name: 1
-      _text: 1
-      _color: {r: 0, g: 0, b: 0, a: 1}
-    - _name: 2
-      _text: 2
-      _color: {r: 0, g: 0, b: 0, a: 1}
-    _questionType: 0
-  - _text: 2
-    _color: {r: 0, g: 0, b: 0, a: 1}
-    _dialogues:
-    - _name: 1
-      _text: 1
-      _color: {r: 0, g: 0, b: 0, a: 1}
-    - _name: 2
-      _text: 2
-      _color: {r: 0, g: 0, b: 0, a: 1}
-    _questionType: 1
+    _color: {r: 1, g: 0.55556077, b: 0, a: 1}
+    _speed: 5
+  _questions: []
 --- !u!1001 &1869351051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33319,11 +33289,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696466781490617737, guid: 867be1758ae1a1941b03cfb45b8401c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5696466781490617737, guid: 867be1758ae1a1941b03cfb45b8401c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.75
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 5696466781490617737, guid: 867be1758ae1a1941b03cfb45b8401c8, type: 3}
       propertyPath: m_LocalPosition.z
