@@ -1,42 +1,40 @@
-using UnityEngine;
-using TMPro;
-public class QuestionBox : MonoBehaviour
+namespace Game.Dialogue
 {
-    [SerializeField] private GameObject _buttonPrefab;
-    [SerializeField] private RectTransform _buttons;
-    [SerializeField] private TextMeshProUGUI _name; 
-    private Animator _animator;
-    private void Awake()
+    using UnityEngine;
+    public class QuestionBox : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-    }
-    public void OpenQuestionBox(Question[] questions)
-    {
-        SetButtons(questions);
-        _name.text = questions[0].GetName();
-        _name.color = questions[0].GetColor();
-        _animator.SetBool("FadeIn", true);
-    }
-    public void CloseQuestionBox()
-    {
-        RemoveButtons();
-        _animator.SetBool("FadeIn", false);
-    }
-    public void SetButtons(Question[] questions)
-    {
-        for (int i = 0; i < questions.Length; i++)
+        [SerializeField] private GameObject _buttonPrefab;
+        [SerializeField] private RectTransform _buttons;
+        private Animator _animator;
+        private void Awake()
         {
-            GameObject newButton = Instantiate(_buttonPrefab);
-            newButton.GetComponent<RectTransform>().SetParent(_buttons);
-            newButton.GetComponent<QuestionButton>().SetQuestion(questions[i]);
+            _animator = GetComponent<Animator>();
+        }
+        public void OpenBox(Question[] questions)
+        {
+            RemoveButtons();
+            SetButtons(questions);
+            _animator.SetBool("FadeIn", true);
+        }
+        public void CloseBox()
+        {
+            _animator.SetBool("FadeIn", false);
+        }
+        private void SetButtons(Question[] questions)
+        {
+            for (int i = 0; i < questions.Length; i++)
+            {
+                GameObject newButton = Instantiate(_buttonPrefab);
+                newButton.GetComponent<RectTransform>().SetParent(_buttons);
+                newButton.GetComponent<QuestionButton>().SetQuestion(questions[i]);
+            }
+        }
+        private void RemoveButtons()
+        {
+            for (int i = 0; i < _buttons.childCount; i++)
+            {
+                Destroy(_buttons.GetChild(i).gameObject);
+            }
         }
     }
-    public void RemoveButtons()
-    {
-        for (int i = 0; i < _buttons.childCount; i++)
-        {
-            Destroy(_buttons.GetChild(i).gameObject);
-        }
-    }
-    public bool IsLoaded() { return _buttons.childCount != 0; }
 }

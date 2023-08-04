@@ -1,44 +1,46 @@
-using UnityEngine;
-[RequireComponent(typeof(PlayerInputReader))]
-public class PlayerInteract : MonoBehaviour
+namespace Game.Interact
 {
-    [SerializeField] private Vector3 _interactionOffset;
-    [SerializeField] private float _interactionRadius;
-    private InteractableObject _currentObject;
-    public virtual void Interact()
+    using UnityEngine;
+    public class PlayerInteract : MonoBehaviour
     {
-        if (_currentObject)
-            InteractCurrent();
-        else
-            InteractAny();
-    }
-    public void SetCrurrentInteractableObject(InteractableObject interact)
-    {
-        _currentObject = interact;
-    }
-    public void RemoveCrurrentInteractableObject()
-    {
-        _currentObject = null;
-    }
-    private void InteractCurrent()
-    {
-        _currentObject.Interact(this);
-    }
-    private void InteractAny()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + _interactionOffset, _interactionRadius);
-        for (int i = 0; i < colliders.Length; i++)
+        [SerializeField] private Vector3 _interactionOffset;
+        [SerializeField] private float _interactionRadius;
+        private InteractableObject _currentObject;
+        public virtual void Interact()
         {
-            InteractableObject interaction = colliders[i].GetComponent<InteractableObject>();
-            if (interaction != null)
+            if (_currentObject)
+                InteractCurrent();
+            else
+                InteractAny();
+        }
+        public void SetCrurrentInteractableObject(InteractableObject interact)
+        {
+            _currentObject = interact;
+        }
+        public void RemoveCrurrentInteractableObject()
+        {
+            _currentObject = null;
+        }
+        private void InteractCurrent()
+        {
+            _currentObject.Interact(this);
+        }
+        private void InteractAny()
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + _interactionOffset, _interactionRadius);
+            for (int i = 0; i < colliders.Length; i++)
             {
-                interaction.Interact(this);
-                break;
+                InteractableObject interaction = colliders[i].GetComponent<InteractableObject>();
+                if (interaction != null)
+                {
+                    interaction.Interact(this);
+                    break;
+                }
             }
         }
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position + _interactionOffset, _interactionRadius);
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(transform.position + _interactionOffset, _interactionRadius);
+        }
     }
 }

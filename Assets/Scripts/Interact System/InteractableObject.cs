@@ -1,5 +1,8 @@
-﻿using UnityEngine;
-public abstract class InteractableObject : MonoBehaviour
+﻿namespace Game.Interact
 {
-    public abstract void Interact(PlayerInteract player);
+    using UnityEngine;
+    public abstract class InteractableObject : MonoBehaviour
+    {
+        public abstract void Interact(PlayerInteract player);
+    }
 }

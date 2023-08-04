@@ -1,15 +1,17 @@
-using UnityEngine;
-[System.Serializable]
-public struct Question
+namespace Game.Dialogue
 {
-    [SerializeField] private string _name;
-    [SerializeField] private string _text;
-    [SerializeField] private Color _color;
-    [SerializeField] private Dialogue[] _dialogues;
-    [SerializeField] private bool _isExitQuestion;
-    public string GetName() { return _name; }
-    public string GetText() { return _text; }
-    public Color GetColor() { return _color; }
-    public Dialogue[] GetDialogues() {  return _dialogues; }
-    public bool IsExitQuestion() { return _isExitQuestion; }
+    using UnityEngine;
+    [System.Serializable]
+    public struct Question
+    {
+        [SerializeField] private string _text;
+        [SerializeField] private Color _color;
+        [SerializeField] private Dialogue[] _dialogues;
+        [SerializeField] private QuestionType _questionType;
+        public string GetText() { return _text; }
+        public Color GetColor() { return _color; }
+        public Dialogue[] GetDialogues() { return _dialogues; }
+        public QuestionType GetQuestionType() { return _questionType; }
+    }
+    public enum QuestionType { Exit, Empty, Quest }
 }
