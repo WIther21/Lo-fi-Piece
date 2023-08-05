@@ -1,11 +1,16 @@
-using UnityEngine;
-[System.Serializable]
-public class Dialogue
+namespace Game.Dialogue
 {
-    [TextArea(1, 1)] [SerializeField] private string _dialogueName;
-    [TextArea(2, 4)] [SerializeField] private string _dialogueText;
-    [SerializeField] private Color _textColor;
-    public string GetDialogueName() { return _dialogueName; }
-    public string GetDialogueText() { return _dialogueText; }
-    public Color GetDialogueColor() { return _textColor; }
+    using UnityEngine;
+    [System.Serializable]
+    public struct Dialogue
+    {
+        [SerializeField] private string _name;
+        [SerializeField][TextArea(1, 3)] private string _text;
+        [SerializeField] private Color _color;
+        [SerializeField] private float _speed;
+        public string GetName() { return _name; }
+        public string GetText() { return _text; }
+        public Color GetColor() { return _color; }
+        public float GetSpeed() { return Mathf.Clamp(_speed, 0, float.MaxValue); }
+    }
 }
