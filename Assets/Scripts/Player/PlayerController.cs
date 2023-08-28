@@ -16,5 +16,6 @@ namespace Game.Player
         public string GetName() { return _name; }
         public int GetHealth() { return _health; }
         public int GetMoney() { return _money; }
+        public void AddMoney(int money) { _money += money; Debug.Log(_money); }
     }
 }

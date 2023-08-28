@@ -1,24 +1,18 @@
 namespace Game.Interact
 {
     using UnityEngine;
-    using Game.Base;
+    using Game.UI;
     public class EntranceDoor : InteractableObject
     {
         [SerializeField] private string _sceneName;
-        private SceneChanger _fader;
+        private SceneChanger _changer;
         private void Awake()
         {
-            _fader = FindObjectOfType<SceneChanger>();
+            _changer = FindObjectOfType<SceneChanger>();
         }
         public override void Interact(PlayerInteract player)
         {
-            if (_fader == null)
-                return;
-            LoadScene();
-        }
-        private void LoadScene()
-        {
-            _fader.FadeOut(_sceneName);
+            _changer.Fade(_sceneName);
         }
     }
 }

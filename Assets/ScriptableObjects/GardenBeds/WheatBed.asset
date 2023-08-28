@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180022b82866191488603b423a5987c5, type: 3}
+  m_Name: WheatBed
+  m_EditorClassIdentifier: 
+  _planted: {fileID: 1024171766, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _grown: {fileID: -1611638871, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _rotten: {fileID: -1918645276, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _plantedWatered: {fileID: -2038360164, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _grownWatered: {fileID: 919624935, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _growSpeed: 5

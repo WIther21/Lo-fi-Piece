@@ -2,13 +2,19 @@ namespace Game.Interact
 {
     using UnityEngine;
     using System.Collections;
+    using Game.Input;
     using Game.Player;
     public class SittableObject : InteractableObject
     {
         [SerializeField] private Orientation _orientation;
         [SerializeField] private float _sitSpeed = 1f;
+        private InputManager _inputManager;
         private bool _isInteracting;
         private bool _canSit = true;
+        private void Awake()
+        {
+            _inputManager = FindObjectOfType<InputManager>();
+        }
         private void OnValidate()
         {
             if (_sitSpeed < 0)
@@ -29,7 +35,7 @@ namespace Game.Interact
             _isInteracting = true;
             player.SetCrurrentInteractableObject(this);
             player.GetComponent<Collider2D>().enabled = false;
-            player.GetComponent<PlayerMovement>().enabled = false;
+            _inputManager.SetActionMap("Sitting");
             player.GetComponent<SpriteRenderer>().sortingOrder = 1;
             PlayerAnimation animation = player.GetComponent<PlayerAnimation>();
             animation.SetSitting(true);
@@ -55,7 +61,7 @@ namespace Game.Interact
             }
 
             player.GetComponent<Collider2D>().enabled = true;
-            player.GetComponent<PlayerMovement>().enabled = true;
+            _inputManager.SetActionMap("Player");
             player.GetComponent<SpriteRenderer>().sortingOrder = 0;
             player.GetComponent<PlayerAnimation>().SetSitting(false);
             player.RemoveCrurrentInteractableObject();
