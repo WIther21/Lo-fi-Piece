@@ -1,11 +1,11 @@
 namespace Game.Quest
 {
-    using Game.Interact;
+    using Game.Interaction;
     public class InteractAction : QuestAction
     {
         public override void Action()
         {
-            InteractableObject interact = GetComponentInChildren<InteractableObject>();
+            IInteractable interact = GetComponentInChildren<IInteractable>();
             if (interact == null)
                 return;
             IncreaseAmount();

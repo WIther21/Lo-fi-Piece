@@ -13,7 +13,7 @@ namespace Game.Quest
         [SerializeField] private TextMeshProUGUI _descriptionHolder;
         [SerializeField] private SliderController _sliderController;
         private List<QuestSO> _quests = new List<QuestSO>();
-        private PlayerController _playerController;
+        private PlayerStats _playerController;
         private QuestSO _currentQuest;
         [Header("Goal Parameters")]
         [SerializeField] private TextMeshProUGUI _goalTitleHolder;
@@ -24,7 +24,7 @@ namespace Game.Quest
         [SerializeField] private ButtonMenu _rewardButtons;
         private void Awake()
         {
-            _playerController = FindObjectOfType<PlayerController>();
+            _playerController = FindObjectOfType<PlayerStats>();
         }
         public void LoadButtons()
         {

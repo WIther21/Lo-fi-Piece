@@ -1,8 +1,8 @@
 namespace Game.Dialogue
 {
     using UnityEngine;
-    using Game.Interact;
-    public class DialogueTrigger : InteractableObject
+    using Game.Interaction;
+    public class DialogueTrigger : MonoBehaviour, IInteractable
     {
         [SerializeField] private DialogueSO _dialogue;
         private DialogueManager _dialogueManager;
@@ -12,7 +12,7 @@ namespace Game.Dialogue
             _dialogueManager = FindObjectOfType<DialogueManager>();
             _dialogueActions = GetComponents<DialogueAction>();
         }
-        public override void Interact(PlayerInteract playerInteract)
+        public void Interact()
         {
             _dialogueManager.SetDialogue(_dialogue);
             _dialogueManager.SetActions(_dialogueActions);

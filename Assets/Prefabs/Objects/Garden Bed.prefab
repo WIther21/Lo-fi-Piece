@@ -124,14 +124,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d8f17df043c274d8e645f40cddf8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _emptyBed: {fileID: 1578540664, guid: b697f511b7092fa42aebf3735247c58b, type: 3}
-  _onionSeeds: {fileID: 11400000, guid: 5d74c58ca664c54499f222549026706f, type: 2}
-  _wheatSeeds: {fileID: 11400000, guid: a1ce66417a8576a419632d0472cc1acf, type: 2}
-  _pumpkinSeeds: {fileID: 11400000, guid: 4b5ad9a5222fce845a74696415feb398, type: 2}
+  _seeds:
+  - {fileID: 11400000, guid: c2dc4efedb43a124d92796c2f7db2653, type: 2}
+  - {fileID: 11400000, guid: a2b1b8cd30a787a41b21ce31ebb198b8, type: 2}
+  - {fileID: 11400000, guid: db47a31f246de164ca000474a58059f5, type: 2}
+  _crops:
+  - {fileID: 11400000, guid: 7d121292a5a91cc4caade8bade2a0229, type: 2}
+  - {fileID: 11400000, guid: 0f5d8ac54dfa65247b68af4b214cb53a, type: 2}
+  - {fileID: 11400000, guid: 063e665141a1e094eaa5c75d4f0e88cf, type: 2}
+  _beds:
+  - {fileID: 11400000, guid: f1b633cb79b52f04a84b01d01a929b85, type: 2}
+  - {fileID: 11400000, guid: 35b71a5ad84bb034dab1f81f9cdc3882, type: 2}
+  - {fileID: 11400000, guid: 8d84521226f4cb84892185a8ba01de77, type: 2}
   _wateringCan: {fileID: 11400000, guid: 330ced1ff46ddbe44a6215edc5df1d4b, type: 2}
-  _onionBed: {fileID: 11400000, guid: f1b633cb79b52f04a84b01d01a929b85, type: 2}
-  _wheatBed: {fileID: 11400000, guid: 35b71a5ad84bb034dab1f81f9cdc3882, type: 2}
-  _pumpkinBed: {fileID: 11400000, guid: 8d84521226f4cb84892185a8ba01de77, type: 2}
-  _onion: {fileID: 11400000, guid: 13faaa1953a513342893ab6cf3f618df, type: 2}
-  _wheat: {fileID: 11400000, guid: 68f28bb152a929e4c91fc311f5ef2d62, type: 2}
-  _pumpkin: {fileID: 11400000, guid: dbca52271c204ce4d8320349700f6f03, type: 2}
+  _emptyBed: {fileID: 1578540664, guid: b697f511b7092fa42aebf3735247c58b, type: 3}

@@ -18,3 +18,4 @@ MonoBehaviour:
   _plantedWatered: {fileID: -2038360164, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
   _grownWatered: {fileID: 919624935, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
   _growSpeed: 5
+  _cropKey: Wheat

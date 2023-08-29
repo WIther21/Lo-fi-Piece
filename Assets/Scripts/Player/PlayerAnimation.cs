@@ -9,36 +9,67 @@ namespace Game.Player
         {
             _animator = GetComponent<Animator>();
         }
-        public void SetMoving(bool value)
+        public void SetMoving(Vector2 direction)
         {
-            _animator.SetBool("IsMoving", value);
-        }
-        public void SetSitting(bool value)
-        {
-            _animator.SetBool("IsSitting", value);
-        }
-        public void SetOrientation(Orientation orientation)
-        {
-            if (orientation == Orientation.left)
+            if (direction.x == 0 && direction.y == 0)
             {
-                SetLayer(0);
-                if (transform.localScale.x > 0)
-                    Flip();
+                SetAnimatorStay();
+                return;
             }
-            else if (orientation == Orientation.right)
+            SetAnimatorMoving();
+            if (direction.x == 0)
             {
-                SetLayer(0);
-                if (transform.localScale.x < 0)
-                    Flip();
-            }
-            else if (orientation == Orientation.lower)
-            {
-                SetLayer(1);
+                if (direction.y > 0)
+                    SetOrientation(Orientation.Up);
+                else
+                    SetOrientation(Orientation.Down);
             }
             else
             {
-                SetLayer(2);
+                if (direction.x > 0)
+                    SetOrientation(Orientation.Right);
+                else
+                    SetOrientation(Orientation.Left);
             }
+        }
+        public void SetSitting(Orientation orientation)
+        {
+            SetAnimatorSitting();
+            SetOrientation(orientation);
+        }
+        private void SetAnimatorStay()
+        {
+            _animator.SetBool("IsMoving", false);
+            _animator.SetBool("IsSitting", false);
+        }
+        private void SetAnimatorMoving()
+        {
+            _animator.SetBool("IsMoving", true);
+            _animator.SetBool("IsSitting", false);
+        }
+        private void SetAnimatorSitting()
+        {
+            _animator.SetBool("IsMoving", false);
+            _animator.SetBool("IsSitting", true);
+        }
+        private void SetOrientation(Orientation orientation)
+        {
+            if (orientation == Orientation.Left)
+            {
+                SetLayer(1);
+                if (IsRight())
+                    Flip();
+            }
+            else if (orientation == Orientation.Right)
+            {
+                SetLayer(1);
+                if (IsLeft())
+                    Flip();
+            }
+            else if (orientation == Orientation.Down)
+                SetLayer(2);
+            else
+                SetLayer(3);
         }
         private void Flip()
         {
@@ -46,7 +77,7 @@ namespace Game.Player
         }
         private void SetLayer(int index)
         {
-            index = Mathf.Clamp(index + 1, 0, _animator.layerCount - 1);
+            index = Mathf.Clamp(index, 0, _animator.layerCount - 1);
             for (int i = 0; i < _animator.layerCount; i++)
             {
                 if (i == index)
@@ -55,6 +86,8 @@ namespace Game.Player
                     _animator.SetLayerWeight(i, 0);
             }
         }
+        private bool IsRight() { return transform.localScale.x > 0; }
+        private bool IsLeft() { return transform.localScale.x < 0; }
     }
-    public enum Orientation { left, right, lower, upper }
+    public enum Orientation { Left, Right, Down, Up }
 }
