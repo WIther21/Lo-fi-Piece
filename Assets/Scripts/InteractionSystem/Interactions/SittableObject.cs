@@ -37,7 +37,6 @@ namespace Game.Interaction
             _isInteracting = true;
             _inputManager.SetActionMap("Sitting");
             _playerManager.GetComponent<Collider2D>().enabled = false;
-            _playerManager.GetComponent<SpriteRenderer>().sortingOrder = 1;
             _playerManager.GetAnimation().SetSitting(_orientation);
             Transform playerTransform = _playerManager.transform;
             while (playerTransform.position != transform.position)
@@ -59,7 +58,6 @@ namespace Game.Interaction
             }
             _inputManager.SetActionMap("Player");
             _playerManager.GetComponent<Collider2D>().enabled = true;
-            _playerManager.GetComponent<SpriteRenderer>().sortingOrder = 0;
             _playerManager.GetAnimation().SetMoving(Vector2.zero);
             _isInteracting = false;
             _isSitting = false;

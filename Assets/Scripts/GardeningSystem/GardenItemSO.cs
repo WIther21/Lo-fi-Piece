@@ -6,6 +6,6 @@ namespace Game.Gardening
     public class GardenItemSO : ItemSO
     {
         [SerializeField] private string _cropKey;
-        public string GetCropKey() { return _cropKey; }
+        public string CropKey { get { return _cropKey; } }
     }
 }

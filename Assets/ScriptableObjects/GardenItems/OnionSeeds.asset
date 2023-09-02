@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: OnionSeeds
   m_EditorClassIdentifier: 
   _icon: {fileID: -1835871147, guid: e872058fb38ba6a489b8d147a1433223, type: 3}
+  _maxAmount: 3
   _cropKey: Onion

@@ -11,12 +11,12 @@ namespace Game.Gardening
         [SerializeField] private Sprite _grownWatered;
         [SerializeField] private float _growSpeed;
         [SerializeField] private string _cropKey;
-        public Sprite GetPlanted() { return _planted; }
-        public Sprite GetGrown() { return _grown; }
-        public Sprite GetRotten() { return _rotten; }
-        public Sprite GetPlantedWatered() { return _plantedWatered; }
-        public Sprite GetGrownWatered() { return _grownWatered; }
-        public float GetGrowSpeed() { return _growSpeed; }
-        public string GetCropKey() { return _cropKey; }
+        public Sprite Planted { get { return _planted; } }
+        public Sprite Grown { get { return _grown; } }
+        public Sprite Rotten { get { return _rotten; } }
+        public Sprite PlantedWatered { get { return _plantedWatered; } }
+        public Sprite GrownWatered { get { return _grownWatered; } }
+        public float GrowSpeed { get { return _growSpeed; } }
+        public string CropKey { get { return _cropKey; } }
     }
 }
